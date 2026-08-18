@@ -20,7 +20,25 @@
 
 ## 安装
 
-### Windows PowerShell
+### 推荐：一行安装
+
+已安装 Node.js 的用户，在 Windows、macOS 或 Linux 终端执行：
+
+```bash
+npx skills add liyue-aigc/seedance-2-5-video-director -g -y
+```
+
+这条命令会从 GitHub 获取 Skill，并安装到当前用户的 Agent Skills 目录；`-g` 表示全局安装，`-y` 表示跳过交互确认。它使用 npm 附带的 `npx` 启动安装器，但本仓库本身不是需要加入项目依赖的 npm 软件包，因此不使用 `npm install`。
+
+如果电脑上没有 Node.js，也可以直接在 Codex 中发送：
+
+```text
+请使用 $skill-installer，从 GitHub 安装 liyue-aigc/seedance-2-5-video-director。
+```
+
+### 手动安装（备用）
+
+#### Windows PowerShell
 
 ```powershell
 $skillRoot = Join-Path $env:USERPROFILE '.codex\skills'
@@ -28,7 +46,7 @@ New-Item -ItemType Directory -Force -Path $skillRoot | Out-Null
 git clone https://github.com/liyue-aigc/seedance-2-5-video-director.git (Join-Path $skillRoot 'seedance-2-5-video-director')
 ```
 
-### macOS / Linux
+#### macOS / Linux
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
@@ -45,6 +63,14 @@ git clone https://github.com/liyue-aigc/seedance-2-5-video-director.git \
 首次安装或当前会话首次调用时，Skill会强制展示学习指导、最小输入模板和四个示例，然后继续处理同一条用户请求。
 
 ## 更新
+
+通过 `npx skills` 安装的用户：
+
+```bash
+npx skills update seedance-2-5-video-director -g -y
+```
+
+手动克隆的用户：
 
 ```bash
 git -C "${CODEX_HOME:-$HOME/.codex}/skills/seedance-2-5-video-director" pull
@@ -150,4 +176,3 @@ GitHub Actions会在每次push和pull request时运行同一验证器。
 ## 开源与第三方说明
 
 代码与原创Skill内容采用 [MIT License](LICENSE)。平台名称、商标和第三方文档归各自权利人所有。能力摘要和示例来源说明见 [NOTICE.md](NOTICE.md)。
-
